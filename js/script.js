@@ -12,9 +12,13 @@ function getComputerChoice() {
 
 function playRound(playerSelection, computerSelection) {
     playerSelection = playerSelection[0].toUpperCase() + playerSelection.slice(1).toLowerCase();
-    console.log("Player: " + playerSelection);
-    console.log("Computer: " + computerSelection);
+    //console.log("Player: " + playerSelection);
+    //console.log("Computer: " + computerSelection);
 
+    return checkWinner(playerSelection, computerSelection);
+}
+
+function checkWinner(playerSelection, computerSelection) {
     if (playerSelection === computerSelection) {
         return "Tie"
     } else if (playerSelection === "Rock") {
@@ -35,7 +39,7 @@ function playRound(playerSelection, computerSelection) {
         } else if (computerSelection === "Paper") {
             return "Player";
         }
-    }
+    }    
 }
 
 function game() {
