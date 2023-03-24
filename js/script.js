@@ -47,10 +47,14 @@ function game() {
 
     for (let i = 1; i <= 5; i++) {
         let winner = playRound(playerSelection, computerSelection);
-        if (winner = "Player") {
+        if (winner === "Player") {
             playerWins++;
-        } else if (winner = "Computer") {
+            console.log(`You win! ${playerSelection} beats ${computerSelection}.`);
+        } else if (winner === "Computer") {
             computerWins++;
+            console.log(`You loose! ${computerSelection} beats ${playerSelection}`);
+        } else {
+            i--;
         }
     }
 
