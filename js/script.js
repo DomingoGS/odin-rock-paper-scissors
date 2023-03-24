@@ -9,3 +9,33 @@ function getComputerChoice() {
         return "Scissors";
     }
 }
+
+function playRound(playerSelection, computerSelection) {
+    playerSelection = playerSelection[0].toUpperCase() + playerSelection.slice(1).toLowerCase();
+    console.log("Player: " + playerSelection);
+    console.log("Computer: " + computerSelection);
+
+    if (playerSelection === computerSelection) {
+        return `It's a tie! ${playerSelection} equals ${computerSelection}.`;
+    } else if (playerSelection === "Rock") {
+        if (computerSelection === "Paper") {
+            return `You loose! ${computerSelection} covers ${playerSelection}.`
+        } else if (computerSelection === "Scissors") {
+            return `You win! ${playerSelection} crushes ${computerSelection}.`;
+        }
+    } else if (playerSelection === "Paper") {
+        if (computerSelection === "Rock") {
+            return `You win! ${playerSelection} covers ${computerSelection}.`;
+        } else if (computerSelection === "Scissors") {
+            return `You loose! ${computerSelection} cut ${playerSelection}.`;
+        }
+    } else if (playerSelection === "Scissors") {
+        if (computerSelection === "Rock") {
+            return `You loose! ${computerSelection} crushes ${playerSelection}.`;
+        } else if (computerSelection === "Paper") {
+            return `You win! ${playerSelection} cut ${computerSelection}.`;
+        }
+    }
+}
+
+console.log(playRound("rock", getComputerChoice()));
