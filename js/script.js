@@ -16,24 +16,24 @@ function playRound(playerSelection, computerSelection) {
     console.log("Computer: " + computerSelection);
 
     if (playerSelection === computerSelection) {
-        return `It's a tie! ${playerSelection} equals ${computerSelection}.`;
+        return "Tie"
     } else if (playerSelection === "Rock") {
         if (computerSelection === "Paper") {
-            return `You loose! ${computerSelection} covers ${playerSelection}.`
+            return "Computer";
         } else if (computerSelection === "Scissors") {
-            return `You win! ${playerSelection} crushes ${computerSelection}.`;
+            return "Player";
         }
     } else if (playerSelection === "Paper") {
         if (computerSelection === "Rock") {
-            return `You win! ${playerSelection} covers ${computerSelection}.`;
+            return "Player";
         } else if (computerSelection === "Scissors") {
-            return `You loose! ${computerSelection} cut ${playerSelection}.`;
+            return "Computer";
         }
     } else if (playerSelection === "Scissors") {
         if (computerSelection === "Rock") {
-            return `You loose! ${computerSelection} crushes ${playerSelection}.`;
+            return "Computer";
         } else if (computerSelection === "Paper") {
-            return `You win! ${playerSelection} cut ${computerSelection}.`;
+            return "Player";
         }
     }
 }
@@ -42,11 +42,15 @@ function game() {
     let playerWins = 0;
     let computerWins = 0;
 
-    let playerSelection = prompt("Choose Rock, Paper or Scissors:");
-    let computerSelection = getComputerChoice();
+    let playerSelection;
+    let computerSelection;
 
     for (let i = 1; i <= 5; i++) {
+        playerSelection = prompt("Choose Rock, Paper or Scissors:");
+        computerSelection = getComputerChoice();
+
         let winner = playRound(playerSelection, computerSelection);
+        
         if (winner === "Player") {
             playerWins++;
             console.log(`You win! ${playerSelection} beats ${computerSelection}.`);
@@ -55,6 +59,7 @@ function game() {
             console.log(`You loose! ${computerSelection} beats ${playerSelection}`);
         } else {
             i--;
+            console.log(`It's a tie! ${computerSelection} vs ${playerSelection}`);
         }
     }
 
@@ -64,3 +69,5 @@ function game() {
         console.log(`Sorry. You lost to the computer ${playerWins} to ${computerWins}.`);
     }
 }
+
+game();
