@@ -53,4 +53,10 @@ function game() {
             computerWins++;
         }
     }
+
+    if (playerWins > computerWins) {
+        console.log(`Congratulations. You are the Winner ${playerWins} to ${computerWins}!`);
+    } else {
+        console.log(`Sorry. You lost to the computer ${playerWins} to ${computerWins}.`);
+    }
 }
