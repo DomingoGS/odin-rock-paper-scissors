@@ -38,4 +38,12 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-console.log(playRound("rock", getComputerChoice()));
+function game() {
+    let playerWins = 0;
+    let computerWins = 0;
+
+    let playerSelection = prompt("Choose Rock, Paper or Scissors:");
+    let computerSelection = getComputerChoice();
+
+
+}
