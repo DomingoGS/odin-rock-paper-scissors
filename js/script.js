@@ -43,33 +43,39 @@ function checkWinner(playerSelection, computerSelection) {
 function game() {
     let playerWins = 0;
     let computerWins = 0;
+    let pendingOverallWinner = true;
 
     let playerSelection;
     let computerSelection;
 
-    for (let i = 1; i <= 5; i++) {
-        playerSelection = prompt("Choose Rock, Paper or Scissors:");
-        computerSelection = getComputerChoice();
+    const buttonList = document.querySelectorAll('button');
+    buttonList.forEach(button => {
+        button.addEventListener('click', () => {
+            
+            if(pendingOverallWinner) {
+                playerSelection = button.textContent;
+                computerSelection = getComputerChoice();
+                let winner = playRound(playerSelection, computerSelection);
+                
+                const div = document.querySelector('div');
 
-        let winner = playRound(playerSelection, computerSelection);
-        
-        if (winner === "Player") {
-            playerWins++;
-            console.log(`You win! ${playerSelection} beats ${computerSelection}.`);
-        } else if (winner === "Computer") {
-            computerWins++;
-            console.log(`You loose! ${computerSelection} beats ${playerSelection}`);
-        } else {
-            i--;
-            console.log(`It's a tie! ${computerSelection} vs ${playerSelection}`);
-        }
-    }
+                if (winner === "Player") {
+                    playerWins++;                
+                    div.textContent = `Player: ${playerWins} - Computer: ${computerWins}. You win! ${playerSelection} beats ${computerSelection}.`;
+                } else if (winner === "Computer") {
+                    computerWins++;
+                    div.textContent = `Player: ${playerWins} - Computer: ${computerWins}. You loose! ${computerSelection} beats ${playerSelection}.`;
+                } else {
+                    div.textContent = `Player: ${playerWins} - Computer: ${computerWins}. It's a tie! ${computerSelection} vs ${playerSelection}.`;
+                }
 
-    if (playerWins > computerWins) {
-        console.log(`Congratulations. You are the Winner ${playerWins} to ${computerWins}!`);
-    } else {
-        console.log(`Sorry. You lost to the computer ${playerWins} to ${computerWins}.`);
-    }
+                if (playerWins === 5 || computerWins === 5) {
+                    pendingOverallWinner = false;
+                    div.textContent = `Player: ${playerWins} - Computer: ${computerWins}. ${winner} is the overall winner!!!`;
+                }
+            }
+        });
+    });
 }
 
 game();
